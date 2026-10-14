@@ -1,7 +1,9 @@
 #pragma once
 #include "Order.hpp"
 
-class FetchOrder {
+
+
+class SalesLedger {
 public:
     Order fetchOrder(int orderId);
 
@@ -11,7 +13,7 @@ class ShippingCalculator {
 
 public:
 
-    ShippingCalculator(FetchOrder& fetchOrder)
+    ShippingCalculator(SalesLedger& fetchOrder)
     : m_fetchOrder(fetchOrder)
     {}
 
@@ -19,5 +21,5 @@ public:
     double calculateShipping(int orderId);
 
 private:
-    FetchOrder& m_fetchOrder;
+    SalesLedger& m_fetchOrder;
 };

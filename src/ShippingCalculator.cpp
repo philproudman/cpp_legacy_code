@@ -35,7 +35,7 @@ namespace json = boost::json;
 
 using tcp = asio::ip::tcp;
 
-Order FetchOrder::fetchOrder(int orderId) {
+Order SalesLedger::fetchOrder(int orderId) {
             const std::string host = "codemanship.co.uk";
         const std::string target =
             "/api/orders.php?orderId=" + std::to_string(orderId);
