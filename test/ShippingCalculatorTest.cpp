@@ -12,6 +12,8 @@ public:
             return Order{"EXPRESS", 5.0, 500.0};
         } else if (orderId == 3) {
             return Order{"OVERNIGHT", 1.0, 50.0};
+        } else if (orderId == 4) {
+            return Order{"INTERNATIONAL", 3.0, 0.0};
         }
         return Order{"STANDARD", 0.0, 0.0};
     }
@@ -54,4 +56,12 @@ TEST_F(ShippingCalculatorTest, CalculateShippingForOvernightOrder) {
     
     // Assert
     ASSERT_GT(shipping, 0.0);
+}
+
+TEST_F(ShippingCalculatorTest, CalculateShippingForInternational) {
+    int orderId = 4;
+
+    double shipping = calculator.calculateShipping(orderId);
+
+    ASSERT_EQ(shipping, 4.5);
 }
