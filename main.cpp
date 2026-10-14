@@ -17,8 +17,8 @@ int main(int argc, char* argv[]) {
         std::cerr << "Invalid orderId: " << argv[1] << std::endl;
         return 1;
     }
-
-    ShippingCalculator calculator;
+    FetchOrder fetchOrder;
+    ShippingCalculator calculator (fetchOrder);
     const double cost = calculator.calculateShipping(orderId);
     std::cout << "Order " << orderId << " shipping cost: " << cost << std::endl;
 

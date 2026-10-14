@@ -90,7 +90,7 @@ Order FetchOrder::fetchOrder(int orderId) {
 
 double ShippingCalculator::calculateShipping(int orderId) {
     try {
-        Order order = FetchOrder().fetchOrder(orderId);
+        Order order = m_fetchOrder.fetchOrder(orderId);
 
         if (order.shippingType == "STANDARD") {
             return order.weightKg * 0.5;
