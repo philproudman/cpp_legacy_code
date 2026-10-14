@@ -1,19 +1,21 @@
 #pragma once
 #include "Order.hpp"
 
+class ISalesLedger {
+public:
+    virtual Order fetchOrder(int orderId) = 0;
+};
 
-
-class SalesLedger {
+class SalesLedger : public ISalesLedger {
 public:
     Order fetchOrder(int orderId);
-
 };
 
 class ShippingCalculator {
 
 public:
 
-    ShippingCalculator(SalesLedger& fetchOrder)
+    ShippingCalculator(ISalesLedger& fetchOrder)
     : m_fetchOrder(fetchOrder)
     {}
 
@@ -21,5 +23,5 @@ public:
     double calculateShipping(int orderId);
 
 private:
-    SalesLedger& m_fetchOrder;
+    ISalesLedger& m_fetchOrder;
 };
