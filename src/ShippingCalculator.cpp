@@ -24,7 +24,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "INTERNATIONAL"){
-            return order.weightKg * 1.5;
+            return calculateShippingCost(order);
         }
 
         throw std::runtime_error(
@@ -37,3 +37,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
     }
 }
 
+double ShippingCalculator::calculateShippingCost(Order &order)
+{
+    return order.weightKg * 1.5;
+}
