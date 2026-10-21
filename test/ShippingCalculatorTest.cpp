@@ -5,6 +5,11 @@
 // Mock implementation of ISalesLedger for testing
 class MockSalesLedger : public ISalesLedger {
 public:
+    MockSalesLedger(Order order)
+        : m_order(order){}
+
+    MockSalesLedger() = default;
+
     Order fetchOrder(int orderId) override {
         if (orderId == 1) {
             return Order{"STANDARD", 2.5, 100.0};
@@ -17,6 +22,9 @@ public:
         }
         return Order{"STANDARD", 0.0, 0.0};
     }
+
+private:
+    Order m_order;
 };
 
 class ShippingCalculatorTest : public ::testing::Test {
