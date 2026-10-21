@@ -93,7 +93,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         Order order = m_fetchOrder.fetchOrder(orderId);
 
         if (order.shippingType == "STANDARD") {
-            return order.weightKg * 0.5;
+            return calculateShippingCost(order);
         }
 
         if (order.shippingType == "EXPRESS") {
@@ -117,4 +117,9 @@ double ShippingCalculator::calculateShipping(int orderId) {
         std::cout << e.what() << '\n';
         return -1;
     }
+}
+
+double ShippingCalculator::calculateShippingCost(Order &order)
+{
+    return order.weightKg * 0.5;
 }
