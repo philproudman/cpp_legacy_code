@@ -37,13 +37,10 @@ TEST_F(ShippingCalculatorTest, CalculateShippingForStandardOrder) {
 }
 
 TEST_F(ShippingCalculatorTest, CalculateShippingForExpressOrder) {
-    // Arrange
     int orderId = 2;
     
-    // Act
     double shipping = calculator.calculateShipping(orderId);
     
-    // Assert
     ASSERT_EQ(shipping, 54.0);
 }
 
