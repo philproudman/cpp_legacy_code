@@ -11,9 +11,7 @@ public:
     MockSalesLedger() = default;
 
     Order fetchOrder(int orderId) override {
-        if (orderId == 2) {
-            return Order{"EXPRESS", 5.0, 500.0};
-        } else if (orderId == 3) {
+        if (orderId == 3) {
             return Order{"OVERNIGHT", 1.0, 50.0};
         } else if (orderId == 4) {
             return Order{"INTERNATIONAL", 3.0, 0.0};
@@ -42,6 +40,8 @@ TEST_F(ShippingCalculatorTest, CalculateShippingForStandardOrder) {
 }
 
 TEST_F(ShippingCalculatorTest, CalculateShippingForExpressOrder) {
+    MockSalesLedger ledger(Order{"EXPRESS", 5.0, 500.0});
+    ShippingCalculator calculator(ledger);
     int orderId = 2;
     
     double shipping = calculator.calculateShipping(orderId);
