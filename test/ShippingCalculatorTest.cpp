@@ -25,9 +25,8 @@ protected:
 TEST_F(ShippingCalculatorTest, CalculateShippingForStandardOrder) {
     MockSalesLedger ledger(Order{"STANDARD", 2.5, 100.0});
     ShippingCalculator calculator(ledger);
-    int orderId = 1;
     
-    double shipping = calculator.calculateShipping(orderId);
+    double shipping = calculator.calculateShipping(1);
     
     ASSERT_EQ(shipping, 1.25);
 }
@@ -35,9 +34,8 @@ TEST_F(ShippingCalculatorTest, CalculateShippingForStandardOrder) {
 TEST_F(ShippingCalculatorTest, CalculateShippingForExpressOrder) {
     MockSalesLedger ledger(Order{"EXPRESS", 5.0, 500.0});
     ShippingCalculator calculator(ledger);
-    int orderId = 2;
     
-    double shipping = calculator.calculateShipping(orderId);
+    double shipping = calculator.calculateShipping(1);
     
     ASSERT_EQ(shipping, 54.0);
 }
@@ -45,9 +43,8 @@ TEST_F(ShippingCalculatorTest, CalculateShippingForExpressOrder) {
 TEST_F(ShippingCalculatorTest, CalculateShippingForOvernightOrder) {
     MockSalesLedger ledger(Order{"OVERNIGHT", 1.0, 50.0});
     ShippingCalculator calculator(ledger);
-    int orderId = 3;
     
-    double shipping = calculator.calculateShipping(orderId);
+    double shipping = calculator.calculateShipping(1);
     
     ASSERT_EQ(shipping, 26.2);
 }
@@ -55,9 +52,8 @@ TEST_F(ShippingCalculatorTest, CalculateShippingForOvernightOrder) {
 TEST_F(ShippingCalculatorTest, CalculateShippingForInternational) {
     MockSalesLedger ledger(Order{"INTERNATIONAL", 3.0, 0.0});
     ShippingCalculator calculator(ledger);
-    int orderId = 4;
 
-    double shipping = calculator.calculateShipping(orderId);
+    double shipping = calculator.calculateShipping(1);
 
     ASSERT_EQ(shipping, 4.5);
 }
