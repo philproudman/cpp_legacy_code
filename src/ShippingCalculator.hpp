@@ -1,15 +1,6 @@
 #pragma once
 #include "Order.hpp"
-
-class ISalesLedger {
-public:
-    virtual Order fetchOrder(int orderId) = 0;
-};
-
-class SalesLedger : public ISalesLedger {
-public:
-    Order fetchOrder(int orderId);
-};
+#include "ISalesLedger.hpp"
 
 class ShippingCalculator {
 
