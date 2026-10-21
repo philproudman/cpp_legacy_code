@@ -1,6 +1,6 @@
-#include "Order.hpp"
+#include "IShipping.hpp"
 
-class InternationalShipping {
+class InternationalShipping : public IShipping {
 public:
    double calculateShippingCost(Order &order);
 };
