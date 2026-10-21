@@ -53,6 +53,7 @@ add_library(shipping_calc_lib
         src/StandardShipping.cpp
         src/ExpressShipping.cpp
         src/OvernightShipping.cpp
+        src/InternationalShipping.cpp
         src/SalesLedger.cpp
 )
 

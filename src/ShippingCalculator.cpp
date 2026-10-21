@@ -3,6 +3,7 @@
 #include "StandardShipping.hpp"
 #include "ExpressShipping.hpp"
 #include "OvernightShipping.hpp"
+#include "InternationalShipping.hpp"
 
 #include <iostream>
 
@@ -24,7 +25,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "INTERNATIONAL"){
-            return calculateShippingCost(order);
+            return InternationalShipping().calculateShippingCost(order);
         }
 
         throw std::runtime_error(
@@ -37,7 +38,3 @@ double ShippingCalculator::calculateShipping(int orderId) {
     }
 }
 
-double ShippingCalculator::calculateShippingCost(Order &order)
-{
-    return order.weightKg * 1.5;
-}
