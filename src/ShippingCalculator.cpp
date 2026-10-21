@@ -19,7 +19,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "OVERNIGHT") {
-            return order.weightKg * 1.2 + 25;
+            return calculateShippingCost(order);
         }
 
         if (order.shippingType == "INTERNATIONAL"){
@@ -36,3 +36,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
     }
 }
 
+double ShippingCalculator::calculateShippingCost(Order &order)
+{
+    return order.weightKg * 1.2 + 25;
+}
