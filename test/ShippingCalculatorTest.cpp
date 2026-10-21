@@ -44,7 +44,7 @@ TEST_F(ShippingCalculatorTest, CalculateShippingForExpressOrder) {
     double shipping = calculator.calculateShipping(orderId);
     
     // Assert
-    ASSERT_GT(shipping, 0.0);
+    ASSERT_EQ(shipping, 54.0);
 }
 
 TEST_F(ShippingCalculatorTest, CalculateShippingForOvernightOrder) {
