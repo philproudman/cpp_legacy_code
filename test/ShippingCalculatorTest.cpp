@@ -26,13 +26,10 @@ protected:
 };
 
 TEST_F(ShippingCalculatorTest, CalculateShippingForStandardOrder) {
-    // Arrange
     int orderId = 1;
     
-    // Act
     double shipping = calculator.calculateShipping(orderId);
     
-    // Assert
     ASSERT_EQ(shipping, 1.25);
 }
 
