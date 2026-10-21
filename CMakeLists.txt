@@ -50,6 +50,7 @@ enable_testing()
 # Create a library from the source code
 add_library(shipping_calc_lib
         src/ShippingCalculator.cpp
+        src/StandardShipping.cpp
 )
 
 target_include_directories(shipping_calc_lib PUBLIC src)

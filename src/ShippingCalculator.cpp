@@ -1,5 +1,6 @@
 #include "ShippingCalculator.hpp"
 #include "Order.hpp"
+#include "StandardShipping.hpp"
 
 #include <boost/asio/connect.hpp>
 #include <boost/asio/io_context.hpp>
@@ -93,7 +94,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         Order order = m_fetchOrder.fetchOrder(orderId);
 
         if (order.shippingType == "STANDARD") {
-            return calculateShippingCost(order);
+            return StandardShipping().calculateShippingCost(order);
         }
 
         if (order.shippingType == "EXPRESS") {
@@ -119,7 +120,3 @@ double ShippingCalculator::calculateShipping(int orderId) {
     }
 }
 
-double ShippingCalculator::calculateShippingCost(Order &order)
-{
-    return order.weightKg * 0.5;
-}
