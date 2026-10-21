@@ -2,6 +2,7 @@
 #include "Order.hpp"
 #include "StandardShipping.hpp"
 #include "ExpressShipping.hpp"
+#include "OvernightShipping.hpp"
 
 #include <iostream>
 
@@ -19,7 +20,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "OVERNIGHT") {
-            return calculateShippingCost(order);
+            return OvernightShipping().calculateShippingCost(order);
         }
 
         if (order.shippingType == "INTERNATIONAL"){
@@ -36,7 +37,3 @@ double ShippingCalculator::calculateShipping(int orderId) {
     }
 }
 
-double ShippingCalculator::calculateShippingCost(Order &order)
-{
-    return order.weightKg * 1.2 + 25;
-}
