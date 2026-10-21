@@ -98,8 +98,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "EXPRESS") {
-            return order.weightKg * 0.8
-                 + order.distanceKm * 0.1;
+            return calculateShippingCost(order);
         }
 
         if (order.shippingType == "OVERNIGHT") {
@@ -120,3 +119,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
     }
 }
 
+double ShippingCalculator::calculateShippingCost(Order &order)
+{
+    return order.weightKg * 0.8 + order.distanceKm * 0.1;
+}
