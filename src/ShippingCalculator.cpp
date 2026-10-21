@@ -1,6 +1,7 @@
 #include "ShippingCalculator.hpp"
 #include "Order.hpp"
 #include "StandardShipping.hpp"
+#include "ExpressShipping.hpp"
 
 #include <boost/asio/connect.hpp>
 #include <boost/asio/io_context.hpp>
@@ -98,7 +99,7 @@ double ShippingCalculator::calculateShipping(int orderId) {
         }
 
         if (order.shippingType == "EXPRESS") {
-            return calculateShippingCost(order);
+            return ExpressShipping().calculateShippingCost(order);
         }
 
         if (order.shippingType == "OVERNIGHT") {
@@ -119,7 +120,3 @@ double ShippingCalculator::calculateShipping(int orderId) {
     }
 }
 
-double ShippingCalculator::calculateShippingCost(Order &order)
-{
-    return order.weightKg * 0.8 + order.distanceKm * 0.1;
-}

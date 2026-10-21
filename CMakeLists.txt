@@ -51,6 +51,7 @@ enable_testing()
 add_library(shipping_calc_lib
         src/ShippingCalculator.cpp
         src/StandardShipping.cpp
+        src/ExpressShipping.cpp
 )
 
 target_include_directories(shipping_calc_lib PUBLIC src)
