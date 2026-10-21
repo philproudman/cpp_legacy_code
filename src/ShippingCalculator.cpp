@@ -6,27 +6,26 @@
 #include "InternationalShipping.hpp"
 
 #include <iostream>
-
+#include <map>
 
 double ShippingCalculator::calculateShipping(int orderId) {
     try {
         Order order = m_fetchOrder.fetchOrder(orderId);
 
-        if (order.shippingType == "STANDARD") {
-            return StandardShipping().calculateShippingCost(order);
-        }
+        StandardShipping standardShipping;
+        ExpressShipping expressShipping;
+        OvernightShipping overnightShipping;
+        InternationalShipping internationalShipping;
 
-        if (order.shippingType == "EXPRESS") {
-            return ExpressShipping().calculateShippingCost(order);
-        }
+        std::map<std::string, IShipping*> shippingLookup = {
+            { "STANDARD", &standardShipping },
+            { "EXPRESS", &expressShipping },
+            { "OVERNIGHT", &overnightShipping },
+            { "INTERNATIONAL", &internationalShipping }
+        };
 
-        if (order.shippingType == "OVERNIGHT") {
-            return OvernightShipping().calculateShippingCost(order);
-        }
-
-        if (order.shippingType == "INTERNATIONAL"){
-            return InternationalShipping().calculateShippingCost(order);
-        }
+        auto shipping = shippingLookup.find(order.shippingType);
+        if (shipping != shippingLookup.end()) return shipping->second->calculateShippingCost(order);
 
         throw std::runtime_error(
             "Unknown shipping type: " + order.shippingType
