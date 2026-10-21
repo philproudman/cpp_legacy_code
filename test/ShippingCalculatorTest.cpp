@@ -1,8 +1,6 @@
 #include <gtest/gtest.h>
 #include "ShippingCalculator.hpp"
 #include "Order.hpp"
-
-// Mock implementation of ISalesLedger for testing
 class MockSalesLedger : public ISalesLedger {
 public:
     MockSalesLedger(Order order)
