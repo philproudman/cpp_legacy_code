@@ -33,7 +33,7 @@ TEST_F(ShippingCalculatorTest, CalculateShippingForStandardOrder) {
     double shipping = calculator.calculateShipping(orderId);
     
     // Assert
-    ASSERT_GT(shipping, 0.0);
+    ASSERT_EQ(shipping, 1.25);
 }
 
 TEST_F(ShippingCalculatorTest, CalculateShippingForExpressOrder) {
