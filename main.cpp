@@ -1,5 +1,9 @@
 #include "src/ShippingCalculator.hpp"
 #include "src/SalesLedger.hpp"
+#include "src/StandardShipping.hpp"
+#include "src/ExpressShipping.hpp"
+#include "src/OvernightShipping.hpp"
+#include "src/InternationalShipping.hpp"
 
 #include <iostream>
 #include <stdexcept>
@@ -19,7 +23,20 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     SalesLedger fetchOrder;
-    ShippingCalculator calculator (fetchOrder);
+
+    StandardShipping standardShipping;
+    ExpressShipping expressShipping;
+    OvernightShipping overnightShipping;
+    InternationalShipping internationalShipping;
+
+    std::map<std::string, IShipping*> shippingLookup = {
+            { "STANDARD", &standardShipping },
+            { "EXPRESS", &expressShipping },
+            { "OVERNIGHT", &overnightShipping },
+            { "INTERNATIONAL", &internationalShipping }
+        };
+
+    ShippingCalculator calculator (fetchOrder, shippingLookup);
     const double cost = calculator.calculateShipping(orderId);
     std::cout << "Order " << orderId << " shipping cost: " << cost << std::endl;
 
